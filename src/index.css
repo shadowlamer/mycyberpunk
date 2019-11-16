@@ -1,0 +1,19 @@
+.simple-keyboard {
+    max-width: 850px;
+    margin: auto;
+}
+
+.speccy {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    margin: auto;
+}
+
+.container {
+    padding-top: 24px;
+}

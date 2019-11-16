@@ -1,0 +1,33 @@
+{
+  "name": "mycyberpunk",
+  "version": "1.0.0",
+  "description": "Website written on ZX Spectrum basic",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "bas2tap": "bas2tap -c -a10 src/program.bas src/program.tap",
+    "copy": "node node_modules/ncp/bin/ncp",
+    "docker:build": "npm run copy -- dist docker/build && docker build -t mycyberpunk docker"
+  },
+  "author": "Vadim Cherenev <sl@anhot.ru>",
+  "license": "UNLICENSE",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "ncp": "^2.0.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "simple-keyboard": "^2.27.10"
+  }
+}
