@@ -12,7 +12,10 @@ npm start
 ```
 npm run make-tape
 ```
-You need "bas2tap" installed within your $PATH
+You need *zmakebas* and *bin2tap* installed.
+```
+sudo apt install zmakebas
+```
 
 ### Build web bundle
 ```
