@@ -3,9 +3,6 @@ import Keyboard from 'simple-keyboard';
 import 'simple-keyboard/build/css/index.css';
 import 'font-awesome/css/font-awesome.css'
 import './index.css';
-import './program.tap';
-import './jsspeccy/jdataview';
-import './jsspeccy/jsspeccy-core.min'
 
 const origSpeccyWidth = 320;
 const origSpeccyHeight = 240;

@@ -1,14 +1,29 @@
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html",
     filename: "./index.html"
 });
 
+const copyPlugin = new CopyPlugin([
+    { from: 'src/*.tap', to: '', force: true,
+        transformPath(targetPath, absolutePath) {
+            return 'tap/'+path.basename(targetPath);
+        }
+    },
+    { from: 'src/jsspeccy/*.js', to: '',
+        transformPath(targetPath, absolutePath) {
+            return path.basename(targetPath);
+        }
+    },
+]);
+
 module.exports = {
-   devServer: {
-       contentBase: './src/jsspeccy'
-   },
+    devServer: {
+        contentBase: './src/jsspeccy'
+    },
     module: {
         rules: [
             {
@@ -55,33 +70,11 @@ module.exports = {
                     }
                 ]
             },
-            {
-                test: /\.tap$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'tap/'
-                        }
-                    }
-                ]
-            },
-            {
-                test: /jsspeccy/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: '/'
-                        }
-                    }
-                ]
-            }
-
         ]
     },
-    plugins: [htmlWebpackPlugin],
+    plugins: [
+        htmlWebpackPlugin,
+        copyPlugin
+    ],
 //    watch: true
 };
