@@ -7,6 +7,8 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "bas2tap": "bas2tap -c -a10 src/program.bas src/program.tap",
+    "add-images": "for i in assets/*.scr; do bin2tap -o src/program.tap -append -a 16384 $i; done",
+    "make-tape": "npm run bas2tap && npm run add-images",
     "copy": "node node_modules/ncp/bin/ncp",
     "docker:build": "npm run copy -- dist docker/build && docker build -t mycyberpunk docker"
   },

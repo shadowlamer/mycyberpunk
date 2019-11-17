@@ -1,6 +1,6 @@
 # My Cyberpunk
 
-Website written on ZX Spectrum basic. Or at least fixture to run ZX Spectrum emulator 
+Website written in Sinclair BASIC. Or at least fixture to run ZX Spectrum emulator 
 at your web page.
 
 ### Run dev server
@@ -8,15 +8,15 @@ at your web page.
 npm start
 ```
 
-### Compile basic source
+### Compose .tap file from BASIC source and images
 ```
-npm bas2tap
+npm run make-tape
 ```
 You need "bas2tap" installed within your $PATH
 
 ### Build web bundle
 ```
-npm build
+npm run build
 ```
 
 ### Make docker image
@@ -38,7 +38,7 @@ sudo service haveged start
 ##### Image building
 
 ```
-sudo npm docker:build -- [<parameters>]
+sudo npm run docker:build -- [<parameters>]
 ```
 
 For each parameter you need to specify:
