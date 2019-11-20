@@ -1,14 +1,12 @@
 {
   "name": "mycyberpunk",
   "version": "1.0.0",
-  "description": "Website written on ZX Spectrum basic",
+  "description": "Website written on Sinclair BASIC",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "bas2tap": "zmakebas -a 10 -l -o src/program.tap -n cyberpunk src/program.bas",
-    "add-images": "for i in assets/*.scr; do bin2tap -o src/program.tap -append -a 16384 $i; done",
-    "make-tape": "npm run bas2tap && npm run add-images",
+    "make-tape": "tools/maketape.sh",
     "copy": "node node_modules/ncp/bin/ncp",
     "docker:build": "npm run copy -- dist docker/build && docker build -t mycyberpunk docker"
   },
