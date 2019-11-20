@@ -9,13 +9,14 @@ const origSpeccyHeight = 240;
 const keyboardHeight = 150;
 const keyboardElement = $('#keyboard');
 const speccyElement = $('#speccy');
+const spacerElement = $('#spacer');
 
 const keyCodes = {
     '{back}':  37,
     '{up}':    38,
     '{down}':  40,
     '{enter}': 13,
-    '{break}': 32,
+    '{break}': 48,
     '{run}':   82,
 };
 
@@ -64,8 +65,10 @@ function onKeyPress(button) {
 }
 
 function calcScaleFactor() {
-    return Math.min(
+    const scaleFactor = Math.min(
         ($(window).height() - keyboardHeight) / origSpeccyHeight,
         $(window).width() / origSpeccyWidth
     );
+    spacerElement.height($(window).height() - keyboardHeight - origSpeccyHeight * scaleFactor + 24);
+    return scaleFactor;
 }

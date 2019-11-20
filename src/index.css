@@ -1,3 +1,7 @@
+body {
+    background: black;
+}
+
 .simple-keyboard {
     max-width: 850px;
     margin: auto;
