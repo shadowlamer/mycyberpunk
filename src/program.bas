@@ -9,6 +9,7 @@ stop
 rem ******** Init *********
     bright 0: flash 0: border 0: paper 0: ink 7
     cls
+    print "Loading";
 rem ****** Setup UDG ******
     restore @udg
     read num
@@ -18,7 +19,9 @@ rem ****** Setup UDG ******
             read byte
             poke usr c$ + i, byte
         next i
+        print ".";
     next n
+    cls
 return
 
 @main_menu:
@@ -79,6 +82,11 @@ rem ****** Contact *******
     read s$
     print at contactPos + i,0; ink 7; paper 0; "     "; s$
   next i
+  go sub @show_qr
+return
+
+@show_qr:
+rem ****** QR code *******
   let third = int (contactPos / 8)
   let row = (contactPos - third * 8)
   let base = 16384 + third * 2048 + row * 32
@@ -149,7 +157,7 @@ rem *** Show disclaimer ***
     cls
     let pText = @text_hello
     go sub @show_text
-    plot 2, 113: draw 84, 4
+    plot 2, 105: draw 84, 4
     let contactPos = 10
     let pContact = @contact_repo
     go sub @show_contact
@@ -181,12 +189,18 @@ rem ****** Show about *****
     go sub @show_article
 return
 
-@show_projects:
 rem **** Show projects ****
-    cls
-    let pText = @text_projects
-    go sub @show_text
-    go sub @wait
+@show_proj1:
+    let pArticle = @article_proj1
+    go sub @show_article
+return
+@show_proj2:
+    let pArticle = @article_proj2
+    go sub @show_article
+return
+@show_proj3:
+    let pArticle = @article_proj3
+    go sub @show_article
 return
 
 @menu_items:
@@ -195,8 +209,15 @@ rem ****** Menu data ******
 @items_main:
 data "What do you want to know?", 3
 data "About me",            @show_about
-data "Notable achievements", @show_projects
+data "Notable projects",    @items_projects
 data "Contact me",          @show_contacts
+
+@items_projects:
+data "Notable projects", 3
+data "Vending machines (since 2017)", @show_proj1
+data "Led equipment    (since 2013)", @show_proj2
+data "Web development  (since 2012)", @show_proj3
+
 
 rem **** Contacts data ****
 
@@ -269,15 +290,15 @@ rem ******** Texts ********
 
 @text_hello:
 data 9
-data "Hello, stranger! I'm glad to"
-data "welcome you on my personal page"
-data "written in pure Sinclair BASIC"
-data "and run in a living ZX Spectrum"
-data "emulator. You can press ""0"" or \s"
-data "on virtual keypad to see its"
-data "source. Yes, I know a lot about"
+data "This page is written in pure"
+data "Sinclair BASIC and run in a"
+data "living ZX Spectrum emulator."
+data "You can press ""0"" or \s on"
+data "virtual keypad to see source."
+data "However modern technologies such"
+data "as JS or Docker is used for its"
+data "work. Yes, I know a lot about"
 data "perversions programming. Enjoy."
-data "It is really slow. Be patient."
 
 @text_about1:
 data 20
@@ -348,16 +369,74 @@ data "at the expense of others."
 data "Feel free to contact me if you"
 data "are interested."
 
-@text_projects:
-data 8
-data "However, I can't remember"
-data "anything notable..."
-data ""
-data "Why then did I make this page?"
-data "I just want to show that I can"
-data "program in ancient language for"
-data "ancient platform and make it"
-data "work on the web ))"
+@text_proj1_1:
+data 20
+data "One small but proud vending"
+data "machine manufacturer company"
+data "asked to develop electronics"
+data "and software for their machines."
+data "I designed it, made prototypes,"
+data "and helped launch production."
+data "The equipment allows you to sell"
+data "for cash and bank transfer,"
+data "accepts contactless cards and"
+data "allows you to connect terminals"
+data "of two famous banks."
+data "There is a remote monitoring."
+data "Users can manage their devices"
+data "through personal account."
+data "Today, there are several"
+data "thousand devices connected to"
+data "the network, hundreds of users,"
+data "dozens of new connections per"
+data "month. One person manages"
+data "technical support."
+
+@text_proj2_1:
+data 20
+data "By request of representatives"
+data "of the local show business, I"
+data "developed a series of devices"
+data "for LED equipment controlling."
+data "The controllers are mainly "
+data "oriented to use in LED suits"
+data "and can work both with"
+data "individual LEDs, LED stripes and"
+data "matrices of various addressable"
+data "LEDs. An important task in the"
+data "development of such controllers"
+data "is synchronization with music."
+data "Devices have evolved"
+data "sequentially from using DTMF"
+data "sequences built into music to"
+data "support MIDI and ArtNet"
+data "protocols over WiFi."
+data "Also, several controller models"
+data "were developed for LED props,"
+data "poi, luminous orbs, etc."
+
+@text_proj3_1:
+data 20
+data "Managed to work as a hired"
+data "full-stack developer in several"
+data "projects. "
+data "Used on the back-end:"
+data "  Java, Spring, Spring Boot"
+data "On the front-end"
+data "  GWT, Flex, pure JavaScript,"
+data "  AngularJS/Angular2"
+data "For persistent storage:"
+data "  JDBC, JPA, Hibernate, various"
+data "  RDBs, Mongo, Elasticsearch"
+data "Gained experience in teamwork,"
+data "daily visits to the office, "
+data "using collaboration tools."
+data "Realized the value of testers"
+data "and project managers."
+data "I apply the acquired knowledge"
+data "and experience when I need to"
+data "develop a web service. This page"
+data "for example."
 
 @text_help:
 data 5
@@ -374,6 +453,18 @@ data "photo", 3
 data @text_about1
 data @text_about2
 data @text_about3
+
+@article_proj1:
+data "machine", 1
+data @text_proj1_1
+
+@article_proj2:
+data "led", 1
+data @text_proj2_1
+
+@article_proj3:
+data "java", 1
+data @text_proj3_1
 
 rem ****** UDG data *******
 
