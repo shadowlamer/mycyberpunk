@@ -215,7 +215,7 @@ data "Contact me",          @show_contacts
 @items_projects:
 data "Notable projects", 3
 data "Vending machines (since 2017)", @show_proj1
-data "Led equipment    (since 2013)", @show_proj2
+data "LED equipment    (since 2013)", @show_proj2
 data "Web development  (since 2012)", @show_proj3
 
 
@@ -253,12 +253,11 @@ data \
     "",\
     "",\
     "",\
-    255,255,255,255,255,255,255,255,255,255,255,255,240,27,188,7,247,210,13,247,244,88,229,23,\
-    244,82,133,23,244,93,85,23,247,213,165,247,240,21,84,7,255,255,119,255,240,65,26,175,240,\
-    227,210,159,255,90,76,103,242,104,202,103,243,10,249,23,243,229,55,223,245,203,138,39,245,\
-    177,52,103,244,13,80,79,255,247,231,127,240,18,117,39,247,218,215,119,244,84,224,7,244,87,\
-    25,71,244,87,141,215,247,213,37,55,240,19,93,71,255,255,255,255,255,255,255,255,255,255,\
-    255,255,255,255,255,255
+    255,255,255,255,255,255,255,255,255,255,255,255,240,27,212,7,247,210,77,247,244,88,221,23,244,\
+    82,229,23,244,93,53,23,247,213,141,247,240,21,84,7,255,255,55,255,240,65,90,175,255,51,252,159,\
+    255,154,109,231,241,96,196,103,246,90,225,23,241,97,22,223,245,95,132,39,247,171,49,231,247,31,\
+    80,79,255,243,231,127,240,22,117,39,247,220,215,127,244,80,224,23,244,81,8,71,244,83,134,215,\
+    247,211,35,55,240,17,95,71,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255
 
 @contact_github:
 data \
@@ -302,12 +301,12 @@ data "perversions programming. Enjoy."
 
 @text_about1:
 data 20
-data "This is me on a photo."
 data "My name is Vadim Cherenev and"
-data "I am a bad programmer."
-data "I can program equally badly in"
-data "any language from brainf**k to"
-data "prolog. If you count the"
+data "I am a bad programmer. I can"
+data "program equally badly in any"
+data "language. I don't see much"
+data "difference between Java and"
+data "JavaScript. If you count the"
 data "languages for which I was paid"
 data "for development, there will be"
 data "more than a dozen. If you accept"
@@ -352,7 +351,7 @@ data "I can help with the technical"
 data "part of your startup, provided"
 data "that you are smart enough to"
 data "replace me with a team of good"
-data "developers on time."
+data "developers promptly."
 data "I have experience in teamwork"
 data "and independent work"
 data "I do not know how to turn"
