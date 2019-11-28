@@ -9,7 +9,7 @@ stop
 rem ******** Init *********
     bright 0: flash 0: border 0: paper 0: ink 7
     cls
-    print "Loading";
+    print "V19.11.25 Loading";
 rem ****** Setup UDG ******
     restore @udg
     read num
