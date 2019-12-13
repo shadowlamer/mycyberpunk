@@ -1,7 +1,7 @@
 # My Cyberpunk
 
 Website written in Sinclair BASIC. Or at least fixture to run ZX Spectrum emulator 
-at your web page.
+at your web page. I've decided to use my personal page as content example ))
 
 ### Run dev server
 ```
@@ -12,9 +12,9 @@ npm start
 ```
 npm run make-tape
 ```
-You need *zmakebas* and *bin2tap* installed.
+You need *zmakebas* and *bin2tap* and *M4* installed.
 ```
-sudo apt install zmakebas
+sudo apt install zmakebas m4
 ```
 
 ### Build web bundle
