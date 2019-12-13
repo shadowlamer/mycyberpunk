@@ -3,7 +3,8 @@
 PROJECT="cyberpunk"
 TAPE="src/program.tap"
 
-zmakebas -i 1 -a 10 -l -o ${TAPE} -n ${PROJECT} src/program.bas
+m4 -I src/bas src/bas/main.bas > program.bas
+zmakebas -i 1 -a 10 -l -o ${TAPE} -n ${PROJECT} program.bas
 
 for SCR in assets/*.scr; do
   NAME=$(basename $SCR ".scr")
