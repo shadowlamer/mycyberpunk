@@ -3,3 +3,4 @@
 /docker/build
 /.idea/
 *.tap
+/program.bas
