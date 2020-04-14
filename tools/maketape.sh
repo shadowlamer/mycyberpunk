@@ -3,7 +3,7 @@
 PROJECT="cyberpunk"
 TAPE="src/program.tap"
 
-m4 -I src/bas src/bas/main.bas > program.bas
+m4 -I src/bas src/bas/main.bas|grep -e "\S" > program.bas
 zmakebas -i 1 -a 10 -l -o ${TAPE} -n ${PROJECT} program.bas
 
 for SCR in assets/*.scr; do
