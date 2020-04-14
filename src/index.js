@@ -6,7 +6,7 @@ import './index.css';
 
 const origSpeccyWidth = 320;
 const origSpeccyHeight = 240;
-const keyboardHeight = 150;
+const keyboardHeight = 200;
 const keyboardElement = $('#keyboard');
 const speccyElement = $('#speccy');
 const spacerElement = $('#spacer');
@@ -18,6 +18,15 @@ const keyCodes = {
     '{enter}': 13,
     '{break}': 48,
     '{run}':   82,
+    1: 49,
+    2: 50,
+    3: 51,
+    4: 52,
+    5: 53,
+    6: 54,
+    7: 55,
+    8: 56,
+    9: 57
 };
 
 const keyboard = new Keyboard({
@@ -25,6 +34,7 @@ const keyboard = new Keyboard({
     layoutName: 'default',
     layout: {
         'default': [
+            '1 2 3 4 5 6 7 8 9',
             '{back} {up} {enter}',
             '{break} {down} {run}',
         ]
@@ -48,7 +58,7 @@ const speccy = JSSpeccy('speccy', {
 });
 
 speccy.setModel(JSSpeccy.Spectrum.MODEL_48K);
-keyboardElement.width((speccyElement.width()));
+keyboardElement.width(speccyElement.width() * 0.8);
 
 function onChange(input) {
 }

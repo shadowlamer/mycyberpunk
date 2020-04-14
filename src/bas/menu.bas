@@ -24,6 +24,8 @@ rem ******** Menu *********
         TEXT(@text_help)
         pause 0
         let key = code inkey$
+        if inkey$ >= "1" and inkey$ <= "9" then \
+           let cursor = key - code "0"
         if key = KEY_DOWN then \
             let cursor = cursor + 1
         if key = KEY_UP then \
