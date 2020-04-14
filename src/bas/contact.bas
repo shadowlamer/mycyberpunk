@@ -1,6 +1,8 @@
 define(SCREEN_START, 16384)
 define(SCREEN_CHAR_WIDTH, 32)
 
+define(GENQR, `esyscmd(tools/qrgen.sh \$1)')
+
 @show_contact:
 rem ****** Contact *******
   restore pContact
