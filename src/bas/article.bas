@@ -45,11 +45,13 @@ rem ***** Show article *****
     cls
     restore pArticle
     read i$
+    if i$ = "" then goto @skip_image
     load i$ screen$
     pause ARTICLE_SCROLL_PAUSE
     let key = code inkey$
     if key = KEY_BACKWARD then return;
     go sub @prescroll
+@skip_image:
     read pages
     for p = 1 to pages
         restore pArticle + p
