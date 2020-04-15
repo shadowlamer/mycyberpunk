@@ -28,10 +28,8 @@ rem ******** Init *********
     cls
 return
 
-include(article.bas)
-include(menu.bas)
-include(contact.bas)
-include(udg.bas)
+include(cyberpunk.bas)
+
 include(disclaimer.bas)
 include(mycontacts.bas)
 include(projects.bas)
