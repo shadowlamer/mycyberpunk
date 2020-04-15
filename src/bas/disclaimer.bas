@@ -1,6 +1,5 @@
 @show_disclaimer:
     ARTICLE(@article_discl)
-    plot 2, 105: draw 84, 4
 return
 
 @article_discl:
@@ -8,7 +7,7 @@ data "", 1
 data @text_hello
 
 @text_hello:
-data 11
+data 12
 data "This page is written in pure"
 data "Sinclair BASIC and run in a"
 data "living ZX Spectrum emulator."
@@ -18,6 +17,7 @@ data "However modern technologies such"
 data "as JS or Docker is used for its"
 data "work. Yes, I know a lot about"
 data "perversions programming. Enjoy."
+data "sub", @disc_strike
 data "\*", 10, @contact_repo
 data "\*", 16, @contact_jsspeccy
 
@@ -37,3 +37,7 @@ data \
     "https://github.com",\
     "          /gasman/jsspeccy2",\
     GENQR(https://github.com/gasman/jsspeccy2)
+
+@disc_strike:
+    plot 2, 105: draw 84, 4
+    return

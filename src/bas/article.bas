@@ -38,13 +38,20 @@ rem ****** Show text ******
         read l$
         PREVENT_SCROLL
         if l$ = "\*" then goto @text_contact
+        if l$ = "sub" then goto @text_sub
+@text_line:
         print l$
-        goto @skip_contact
+        goto @skip_extra
 @text_contact:
         read contactPos
         read pContact
         go sub @show_contact
-@skip_contact:
+        goto @skip_extra
+@text_sub:
+        read pSub
+        go sub pSub
+        goto @skip_extra
+@skip_extra:
     next b
 return
 
