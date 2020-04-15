@@ -33,11 +33,19 @@ return
 rem ****** Show text ******
     restore pText
     read lines
-    for i = 1 to lines
+    for b = 1 to lines
+        restore pText + b
         read l$
         PREVENT_SCROLL
+        if l$ = "\*" then goto @text_contact
         print l$
-    next i
+        goto @skip_contact
+@text_contact:
+        read contactPos
+        read pContact
+        go sub @show_contact
+@skip_contact:
+    next b
 return
 
 @show_article:

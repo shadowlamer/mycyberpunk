@@ -1,17 +1,17 @@
 @show_contacts:
-    cls
-    print ink 4; "My contacts"
-    let contactPos = 4
-    let pContact = @contact_email
-    go sub @show_contact
-    let contactPos = 10
-    let pContact = @contact_github
-    go sub @show_contact
-    let contactPos = 16
-    let pContact = @contact_linkedin
-    go sub @show_contact
-    go sub @wait
+    ARTICLE(@article_cont)
 return
+
+@article_cont:
+data "", 1
+data @text_contacts
+
+@text_contacts:
+data 4
+data "My contacts:"
+data "\*", 4,  @contact_email
+data "\*", 10, @contact_github
+data "\*", 16, @contact_linkedin
 
 @contact_email:
 data \

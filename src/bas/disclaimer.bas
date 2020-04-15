@@ -1,19 +1,14 @@
 @show_disclaimer:
-rem *** Show disclaimer ***
-    cls
-    TEXT(@text_hello)
+    ARTICLE(@article_discl)
     plot 2, 105: draw 84, 4
-    let contactPos = 10
-    let pContact = @contact_repo
-    go sub @show_contact
-    let contactPos = 16
-    let pContact = @contact_jsspeccy
-    go sub @show_contact
-    go sub @wait
 return
 
+@article_discl:
+data "", 1
+data @text_hello
+
 @text_hello:
-data 9
+data 11
 data "This page is written in pure"
 data "Sinclair BASIC and run in a"
 data "living ZX Spectrum emulator."
@@ -23,6 +18,9 @@ data "However modern technologies such"
 data "as JS or Docker is used for its"
 data "work. Yes, I know a lot about"
 data "perversions programming. Enjoy."
+data "\*", 10, @contact_repo
+data "\*", 16, @contact_jsspeccy
+
 
 @contact_repo:
 data \
