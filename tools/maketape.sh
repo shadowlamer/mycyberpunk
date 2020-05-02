@@ -2,13 +2,9 @@
 
 PROJECT="cyberpunk"
 TAPE="src/program.tap"
+MAIN="src/bas/engine/main.bas"
+INCLUDE="src/bas"
 
-m4 -I src/bas src/bas/main.bas|grep -e "\S" > program.bas
+m4 -I ${INCLUDE} ${MAIN}|grep -e "\S" > program.bas
 zmakebas -i 1 -a 10 -l -o ${TAPE} -n ${PROJECT} program.bas
-
-for SCR in assets/*.scr; do
-  NAME=$(basename $SCR ".scr")
-  jsbin2tap -o $NAME -a 16384 $SCR
-  cat $NAME >> ${TAPE}
-  rm ${NAME}
-done
+jsbin2tap -p -o ${TAPE} assets/*.scr
