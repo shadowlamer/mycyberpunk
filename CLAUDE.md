@@ -67,6 +67,8 @@ Also requires `jsbin2tap` (installed via npm devDependencies).
 
 `assets/*.scr` — ZX Spectrum screen dumps (6912 bytes each) used as splash images for articles. Loaded into the TAP file by `jsbin2tap`.
 
+Для просмотра `.scr`-файлов вне эмулятора используется `tools/scr2png.py` — конвертер на Python (Pillow), корректно декодирующий пиксельную адресацию ZX Spectrum (third/row/line/col) и атрибуты цвета (ink/paper на ячейку 8×8).
+
 ## Site Content
 
 Персональная страница **Вадима Черенева** (sl@anhot.ru, GitHub: shadowlamer). Весь контент на английском — автор объясняет это отсутствием кириллического ПЗУ у ZX Spectrum. Тон текстов — самоироничный.
@@ -79,16 +81,17 @@ Also requires `jsbin2tap` (installed via npm devDependencies).
 
 **Заставка (disclaimer)** — показывается первым при загрузке. Текст о том, что страница написана на чистом Sinclair BASIC. Слово "perversions" визуально перечёркнуто через `PLOT`/`DRAW`. Два QR-кода: на репозиторий проекта и на эмулятор JSSpeccy.
 
-**About me** — 3 страницы текста, перед которыми показывается фотография (`photo.scr`):
+**About me** — 3 страницы текста, перед которыми показывается заставка (`photo.scr`):
+- `photo.scr` — дизированное портретное фото автора (голова и плечи), стилизованное под монохромную графику ZX Spectrum
 - Знакомство: 20+ лет профессионального опыта, 25+ от первого helloworld, больше десятка языков
 - Full-stack навыки: от пайки плат и аналоговой техники до web-сервисов, мобильных приложений и SCADA
 - Личное: помогает стартапам, не умеет водить машину и включать токарный станок
 
 **Notable projects** — подменю с тремя проектами:
 
-1. **Vending machines** (с 2017, `machine.scr`) — электроника и ПО для вендинговых аппаратов: оплата наличными/безналом, бесконтактные карты, удалённый мониторинг, личный кабинет. Тысячи устройств в сети.
-2. **LED equipment** (с 2013, `led.scr`) — контроллеры для LED-костюмов и реквизита (пои, сферы) для шоу-бизнеса. Синхронизация с музыкой: от DTMF до MIDI/ArtNet по WiFi.
-3. **Web development** (с 2012, `java.scr`) — full-stack по найму. Backend: Java/Spring. Frontend: GWT/Flex/JS/Angular. Storage: JDBC/Hibernate/Mongo/Elasticsearch.
+1. **Vending machines** (с 2017, `machine.scr`) — электроника и ПО для вендинговых аппаратов: оплата наличными/безналом, бесконтактные карты, удалённый мониторинг, личный кабинет. Тысячи устройств в сети. Заставка: стилизованная иллюстрация вендингового аппарата — вертикальная конструкция с горизонтальными рядами и текстовым блоком.
+2. **LED equipment** (с 2013, `led.scr`) — контроллеры для LED-костюмов и реквизита (пои, сферы) для шоу-бизнеса. Синхронизация с музыкой: от DTMF до MIDI/ArtNet по WiFi. Заставка: сцена LED-перформанса — вертикальные тёмные полосы (исполнители/устройства) с центральной областью свечения.
+3. **Web development** (с 2012, `java.scr`) — full-stack по найму. Backend: Java/Spring. Frontend: GWT/Flex/JS/Angular. Storage: JDBC/Hibernate/Mongo/Elasticsearch. Заставка: абстрактная компоновка — кодоподобный текст слева, табличная сетка справа.
 
 **Contact me** — три блока с QR-кодами: email (sl@anhot.ru), GitHub (shadowlamer), LinkedIn (shadowlamer).
 
