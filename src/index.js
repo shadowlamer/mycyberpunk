@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Keyboard from 'simple-keyboard';
 import 'simple-keyboard/build/css/index.css';
-import 'font-awesome/css/font-awesome.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 import './index.css';
 
 const origSpeccyWidth = 320;
@@ -40,12 +40,12 @@ const keyboard = new Keyboard({
         ]
     },
     display: {
-        '{back}': '<i class="fa fa-backward"></i>',
-        '{enter}': '<i class="fa fa-forward"></i>',
-        '{up}': '<i class="fa fa-arrow-up"></i>',
-        '{down}': '<i class="fa fa-arrow-down"></i>',
-        '{break}': '<i class="fa fa-stop-circle-o"></i>',
-        '{run}': '<i class="fa fa-play-circle-o"></i>',
+        '{back}': '<i class="fas fa-backward"></i>',
+        '{enter}': '<i class="fas fa-forward"></i>',
+        '{up}': '<i class="fas fa-arrow-up"></i>',
+        '{down}': '<i class="fas fa-arrow-down"></i>',
+        '{break}': '<i class="far fa-circle-stop"></i>',
+        '{run}': '<i class="far fa-circle-play"></i>',
     }
 
 });

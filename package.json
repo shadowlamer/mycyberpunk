@@ -4,32 +4,30 @@
   "description": "Website written on Sinclair BASIC",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
     "make-tape": "tools/maketape.sh",
-    "copy": "node node_modules/ncp/bin/ncp",
-    "docker:build": "npm run copy -- dist docker/build && docker build -t mycyberpunk docker"
+    "copy": "node -e \"const fs=require('fs');fs.rmSync('docker/build',{recursive:true,force:true});fs.cpSync('dist','docker/build',{recursive:true})\"",
+    "docker:build": "npm run copy && docker build -t mycyberpunk docker"
   },
   "author": "Vadim Cherenev <sl@anhot.ru>",
   "license": "UNLICENSE",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "copy-webpack-plugin": "^5.0.5",
-    "css-loader": "^1.0.0",
-    "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^3.2.0",
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
     "jsbin2tap": "0.0.2",
-    "ncp": "^2.0.0",
-    "style-loader": "^0.23.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.9.0"
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.5.0",
-    "simple-keyboard": "^2.27.10"
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "jquery": "^3.7.1",
+    "simple-keyboard": "^3.8.54"
   }
 }
