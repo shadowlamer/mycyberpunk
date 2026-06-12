@@ -3,7 +3,7 @@
 return
 
 @article_discl:
-data "", 1
+data "", 1, ""
 data @text_hello
 
 @text_hello:

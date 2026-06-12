@@ -68,12 +68,35 @@ rem ***** Show article *****
     go sub @prescroll
 @skip_image:
     read pages
-    for p = 1 to pages
+    read g$
+    for p = 1 to pages - 1
         restore pArticle + p
         read pText
         go sub @show_text
         go sub @wait
         let key = code inkey$
-        if key = KEY_BACKWARD then return;
+        if key = KEY_BACKWARD then return
     next p
+    restore pArticle + pages
+    read pText
+    go sub @show_text
+    if g$ <> "" then goto @article_game
+    go sub @wait
+    let key = code inkey$
+    if key = KEY_BACKWARD then return
+return
+
+@article_game:
+    go sub @game_menu
+    pause 0
+    let key = code inkey$
+    if key = KEY_BACKWARD then return
+    load g$
+
+@game_menu:
+rem **** Game menu *****
+    print at 20, 0; ink DEFAULT_INK; "                                "
+    print at 21, 0; "                                "
+    print at 20, 0; ink INFO_INK; "Enter - Play"
+    print at 21, 0; ink INFO_INK; "Left  - Back to menu"
 return

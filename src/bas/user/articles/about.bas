@@ -3,7 +3,7 @@
 return
 
 @article_about:
-data "photo", 3
+data "photo", 3, ""
 data @text_about1
 data @text_about2
 data @text_about3

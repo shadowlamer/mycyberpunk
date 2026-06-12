@@ -3,7 +3,7 @@
 return
 
 @article_cont:
-data "", 1
+data "", 1, ""
 data @text_contacts
 
 @text_contacts:

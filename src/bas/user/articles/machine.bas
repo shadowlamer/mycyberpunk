@@ -3,7 +3,7 @@
 return
 
 @article_machine:
-data "machine", 1
+data "machine", 1, ""
 data @text_machine_1
 
 @text_machine_1:

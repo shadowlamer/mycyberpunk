@@ -3,7 +3,7 @@
 return
 
 @article_led:
-data "led", 1
+data "led", 1, ""
 data @text_led_1
 
 @text_led_1:

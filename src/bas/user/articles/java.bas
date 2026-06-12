@@ -3,7 +3,7 @@
 return
 
 @article_java:
-data "java", 1
+data "java", 1, ""
 data @text_java_1
 
 @text_java_1:
