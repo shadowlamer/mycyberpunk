@@ -10,7 +10,13 @@ rem ******** Menu *********
     @menu_loop:
         restore pItem
         read t$, nItems
-        print at 0, 0; t$
+        print at 0, 0; ink MENU_SELECTED_INK; t$
+        read descLines
+        print
+        for d = 1 to descLines
+            read d$
+            print d$
+        next d
         print
         for i = 1 to nItems
             read m$, sublink

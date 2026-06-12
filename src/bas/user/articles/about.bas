@@ -26,9 +26,9 @@ data "multiply this number by two."
 data "If you count pet-projects and"
 data "helloworlds, you can multiply by"
 data "two more."
-data "I have 20+ years of development"
+data "I have 25+ years of development"
 data "experience from the first salary"
-data "and 25+ years from the first"
+data "and 30+ years from the first"
 data "helloworld."
 
 @text_about2:

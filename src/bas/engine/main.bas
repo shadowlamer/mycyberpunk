@@ -1,6 +1,6 @@
 # Set line number increment to 1 in zmakebas. Data pointer manipulations depends on this.
 
-define(VERSION, "V20.04.15")
+define(VERSION, "V26.06.12")
 
 include(engine/settings.bas)
 include(engine/init.bas)
