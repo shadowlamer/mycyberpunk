@@ -12,7 +12,7 @@ My Cyberpunk is a personal website that runs entirely inside a **ZX Spectrum emu
 npm start              # Dev server with hot reload (webpack-dev-server)
 npm run make-tape      # Compile BASIC sources → src/program.tap
 npm run build          # Production webpack build → dist/
-npm run docker:build   # Build dist/ then create Docker image (nginx + SSL)
+npm run docker:build   # make-tape + build + Docker image (nginx + SSL)
 ```
 
 **Tape compilation prerequisites** (needed for `npm run make-tape`):
@@ -42,6 +42,9 @@ Also requires `jsbin2tap` (installed via npm devDependencies).
 1. M4 preprocesses `main.bas` with `-I src/bas`, resolving all `include` directives → flat `program.bas`
 2. `zmakebas` compiles `program.bas` → `src/program.tap`
 3. `jsbin2tap` appends screen snapshots from `assets/*.scr` into the TAP
+4. Game TAP files from `assets/*.tap` are appended after the main program
+
+The final TAP structure: screen snapshots → main BASIC program → game TAPs.
 
 ### Webpack Build (`webpack.config.js`)
 
@@ -49,64 +52,68 @@ Also requires `jsbin2tap` (installed via npm devDependencies).
 - CSS modules with `[local]` naming (no hashing)
 - Copies `src/program.tap` → `dist/tap/program.tap`
 - Copies `src/jsspeccy/*.js` → `dist/`
-- Font Awesome and web fonts handled via file-loader
-
-### Virtual Keyboard
-
-`src/index.js` maps on-screen buttons to Spectrum key events using `document.onkeydown`/`onkeyup`. Key bindings are defined in the `keyCodes` object and correspond to `KEY_*` constants in `src/bas/engine/settings.bas`.
+- Font Awesome 6 and web fonts handled via file-loader
 
 ### Docker Deployment (`docker/`)
 
-- `Dockerfile` — two-stage: Node.js 14 build environment, then nginx production image
+- `Dockerfile` — two-stage: Node.js build environment, then nginx production image
 - `prepareweb.sh` — generates self-signed SSL certificates
 - `entrypoint.sh` — container entrypoint that starts nginx
-- `cyberpunk.yml` — Docker Compose configuration
 - Build args: `site_url`, `maintainer_email` (for SSL cert generation)
 
 ### Assets
 
-`assets/*.scr` — ZX Spectrum screen dumps (6912 bytes each) used as splash images for articles. Loaded into the TAP file by `jsbin2tap`.
-
-Для просмотра `.scr`-файлов вне эмулятора используется `tools/scr2png.py` — конвертер на Python (Pillow), корректно декодирующий пиксельную адресацию ZX Spectrum (third/row/line/col) и атрибуты цвета (ink/paper на ячейку 8×8).
+- `assets/*.scr` — ZX Spectrum screen dumps (6912 bytes each) used as splash images for articles. Use `tools/scr2png.py` to convert to PNG (correctly decodes ZX Spectrum pixel addressing and color attributes).
+- `assets/*.tap` — game TAP files that are appended to the main tape and can be loaded from BASIC articles via `load "game_name"`.
 
 ## Site Content
 
-Персональная страница **Вадима Черенева** (sl@anhot.ru, GitHub: shadowlamer). Весь контент на английском — автор объясняет это отсутствием кириллического ПЗУ у ZX Spectrum. Тон текстов — самоироничный.
+Personal website of **Vadim Cherenev** (sl@anhot.ru, GitHub: shadowlamer). All content is in English — the author explains this by the lack of a Cyrillic character generator on the ZX Spectrum. The tone is self-ironic.
 
-### Навигация
+### Navigation
 
-Двухуровневое меню. Управление: стрелки вверх/вниз — выбор, Enter — переход, влево — возврат, цифры 1–9 — быстрый выбор, «0» (Stop) — выход в исходный код.
+Two-level menu with descriptions. Controls: up/down arrows — select, Enter — choose, Left — go back, 1–9 — quick select, "0" (Stop) — exit to source code. The menu engine (`menu.bas`) uses partial redraw on cursor change for responsive navigation.
 
-### Экраны
+### Screens
 
-**Заставка (disclaimer)** — показывается первым при загрузке. Текст о том, что страница написана на чистом Sinclair BASIC. Слово "perversions" визуально перечёркнуто через `PLOT`/`DRAW`. Два QR-кода: на репозиторий проекта и на эмулятор JSSpeccy.
+**Disclaimer** — shown first on load. Text about the page being written in pure Sinclair BASIC. The word "perversions" is visually struck through via `PLOT`/`DRAW`. Two QR codes: one for the project repository, one for the JSSpeccy emulator.
 
-**About me** — 3 страницы текста, перед которыми показывается заставка (`photo.scr`):
-- `photo.scr` — дизированное портретное фото автора (голова и плечи), стилизованное под монохромную графику ZX Spectrum
-- Знакомство: 20+ лет профессионального опыта, 25+ от первого helloworld, больше десятка языков
-- Full-stack навыки: от пайки плат и аналоговой техники до web-сервисов, мобильных приложений и SCADA
-- Личное: помогает стартапам, не умеет водить машину и включать токарный станок
+**About me** — 3 pages of text, preceded by a splash screen (`photo.scr`):
+- Introduction: 25+ years of professional experience, 30+ from first helloworld, over a dozen languages
+- Full-stack skills: from soldering boards and analog electronics to web services, mobile apps, and SCADA
+- Personal: helps startups, can't drive a car or operate a lathe
 
-**Notable projects** — подменю с тремя проектами:
+**Notable projects** — submenu with descriptions, 6 items:
 
-1. **Vending machines** (с 2017, `machine.scr`) — электроника и ПО для вендинговых аппаратов: оплата наличными/безналом, бесконтактные карты, удалённый мониторинг, личный кабинет. Тысячи устройств в сети. Заставка: стилизованная иллюстрация вендингового аппарата — вертикальная конструкция с горизонтальными рядами и текстовым блоком.
-2. **LED equipment** (с 2013, `led.scr`) — контроллеры для LED-костюмов и реквизита (пои, сферы) для шоу-бизнеса. Синхронизация с музыкой: от DTMF до MIDI/ArtNet по WiFi. Заставка: сцена LED-перформанса — вертикальные тёмные полосы (исполнители/устройства) с центральной областью свечения.
-3. **Web development** (с 2012, `java.scr`) — full-stack по найму. Backend: Java/Spring. Frontend: GWT/Flex/JS/Angular. Storage: JDBC/Hibernate/Mongo/Elasticsearch. Заставка: абстрактная компоновка — кодоподобный текст слева, табличная сетка справа.
+1. **Vending machines** (since 2017, `machine.scr`) — electronics and software for vending machines
+2. **LED equipment** (since 2013, `led.scr`) — controllers for LED costumes and props for show business
+3. **Web development** (since 2012, `java.scr`) — full-stack hired work
+4. **Robot Battle 2025** (`nut.scr`) — combat robot built from a Bigo constructor in 2 weeks for an international championship in Perm
+5. **ZX Spectrum games** — submenu with 2 games that can be launched directly from the article:
+   - **6.6.6.6** — tech support RPG written in C (SDCC). Article ends with a game menu: Enter to play, Left to return.
+   - **7.7.7.7** — dungeon crawler built on 8bitworkshop + Tiled + Furnace
+6. **AI experiments** — article about neural networks (DDPM and Stable Diffusion) trained on ZX Spectrum art from zxart.ee, with a link to huggingface.co/shadowlamer
 
-**Contact me** — три блока с QR-кодами: email (sl@anhot.ru), GitHub (shadowlamer), LinkedIn (shadowlamer).
+**Contact me** — two blocks with QR codes: email (sl@anhot.ru) and GitHub (shadowlamer).
 
-### Как работает QR-код в контенте
+### How QR Codes Work in Content
 
-Макрос `GENQR(url)` (определён в `contact.bas`) вызывает `tools/qrgen.sh` на этапе M4-препроцессинга. Скрипт генерирует QR через `qrencode`, преобразует в массив байтов, который встраивается прямо в BASIC-код. Во время выполнения процедура `@show_qr` пишет эти байты через `POKE` напрямую в видеопамять ZX Spectrum.
+The `GENQR(url)` macro (defined in `contact.bas`) calls `tools/qrgen.sh` during M4 preprocessing. The script generates a QR code via `qrencode`, converts it to a byte array that is embedded directly into BASIC code. At runtime, the `@show_qr` procedure writes these bytes via `POKE` directly into the ZX Spectrum video memory.
 
-### Как добавить новый контент
+### How to Add New Content
 
-1. Создать `src/bas/user/articles/<name>.bas` — определить метку `@show_<name>`, данные статьи через `ARTICLE()` и текстовые блоки через `DATA`
-2. Добавить `include(user/articles/<name>.bas)` в `src/bas/user/user.bas`
-3. Добавить пункт меню в `src/bas/user/menuitems.bas` — `DATA "Название", @show_<name>` (для подменю) или `DATA "Название", @items_<name>` с новым блоком данных
-4. При необходимости — положить `.scr`-скриншот в `assets/` и указать его имя в первом `DATA` статьи
+1. Create `src/bas/user/articles/<name>.bas` — define `@show_<name>` label, article data via `ARTICLE()`, and text blocks via `DATA`
+2. Add `include(user/articles/<name>.bas)` in `src/bas/user/articles/projects.bas`
+3. Add menu item in `src/bas/user/menuitems.bas` — `DATA "Title", @show_<name>` for an article or `DATA "Title", @items_<name>` for a submenu
+4. Optionally place a `.scr` screenshot in `assets/` and reference its name (without extension) in the article's first `DATA` field
+5. For playable games: place the game `.tap` in `assets/`, set the article's third `DATA` field to the game name
 
 ## Key Technical Notes
 
-- The BASIC menu system (`src/bas/engine/menu.bas`) uses `DATA`/`READ`/`RESTORE` with pointer arithmetic for hierarchical navigation. Menu items with links `>= @menu_items` are submenus; links below that threshold are subroutine addresses (articles).
+- The BASIC menu system uses `DATA`/`READ`/`RESTORE` with pointer arithmetic for hierarchical navigation. Menu items with links `>= @menu_items` are submenus; links below that threshold are subroutine addresses (articles).
+- All `@show_*` labels must be included **before** `menuitems.bas` in the build order so their addresses fall below `@menu_items`.
+- Sinclair BASIC string variables are limited to a single character + `$` (e.g. `g$`, not `game$`).
+- Label names must not contain Sinclair BASIC keywords (e.g. avoid `draw`, `print` in label names).
+- Each text page is exactly 20 lines, each line max 32 characters.
+- The article engine supports a third `DATA` field for game filenames. If non-empty, a "Play / Back" menu is shown after the last page instead of "Press any key".
 - Screen snapshots (.scr files) can be generated with a ZX Spectrum emulator; place them in `assets/`.
