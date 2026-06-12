@@ -7,11 +7,10 @@ data "", 1, ""
 data @text_contacts
 
 @text_contacts:
-data 4
+data 3
 data "My contacts:"
 data "\*", 4,  @contact_email
 data "\*", 10, @contact_github
-data "\*", 16, @contact_linkedin
 
 @contact_email:
 data \
@@ -28,11 +27,3 @@ data \
     "               /shadowlamer",\
     "",\
     GENQR(https://github.com/shadowlamer)
-
-@contact_linkedin:
-data \
-    "My LinkedIn profile:       ",\
-    "https://linkedin.com/in    ",\
-    "               /shadowlamer",\
-    "",\
-    GENQR(https://linkedin.com/in/shadowlamer)
