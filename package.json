@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "make-tape": "tools/maketape.sh",
     "copy": "node -e \"const fs=require('fs');fs.rmSync('docker/build',{recursive:true,force:true});fs.cpSync('dist','docker/build',{recursive:true})\"",
-    "docker:build": "npm run copy && docker build -t mycyberpunk docker"
+    "docker:build": "npm run make-tape && npm run build && npm run copy && docker build -t mycyberpunk docker"
   },
   "author": "Vadim Cherenev <sl@anhot.ru>",
   "license": "UNLICENSE",

@@ -1,5 +1,8 @@
 @show_6666:
     ARTICLE(@article_6666)
+    print at LAST_SCREEN_LINE, 0; ink INFO_INK; "Press Enter to play...";
+    pause 0
+    load "6.6.6.6"
 return
 
 @article_6666:
