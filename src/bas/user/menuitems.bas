@@ -11,12 +11,13 @@ data "ZX Spectrum",         @items_zx
 data "Contact me",          @show_contacts
 
 @items_projects:
-data "Notable projects", 3, 2
+data "Notable projects", 4, 2
 data "Things I've built or helped"
 data "build over the years."
 data "Vending machines (since 2017)", @show_machine
 data "LED equipment    (since 2013)", @show_led
 data "Web development  (since 2012)", @show_java
+data "Robot Battle 2025             ", @show_nut
 
 @items_zx:
 data "ZX Spectrum", 3, 2
